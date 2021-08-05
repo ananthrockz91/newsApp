@@ -15,14 +15,18 @@ class AuthService {
 
     var response = await http.post(Uri.parse(registerApi), body: map);
 
-    if(response.statusCode == 200) {
-      var responseString = jsonDecode(response.body);
+    try {
+      if(response.statusCode == 200) {
+        var responseString = jsonDecode(response.body);
 
-      apiRegistrationResponse = responseString["Success"];
+        apiRegistrationResponse = responseString["Success"];
 
-      return apiRegistrationResponse;
-    } else {
-      return apiRegistrationResponse;
+        return apiRegistrationResponse;
+      } else {
+        return apiRegistrationResponse;
+      }
+    } catch(e) {
+      return e.toString();
     }
 
   }
@@ -30,16 +34,20 @@ class AuthService {
   Future<String> signIn(map) async {
     var response = await http.post(Uri.parse(loginApi), body: map);
 
-    if(response.statusCode == 200) {
-      var responseString = jsonDecode(response.body);
+    try {
+      if(response.statusCode == 200) {
+        var responseString = jsonDecode(response.body);
 
-      apiRegistrationResponse = responseString["Success"];
+        apiRegistrationResponse = responseString["Success"];
 
-      print(apiRegistrationResponse);
+        print(apiRegistrationResponse);
 
-      return apiRegistrationResponse;
-    } else {
-      return apiRegistrationResponse;
+        return apiRegistrationResponse;
+      } else {
+        return apiRegistrationResponse;
+      }
+    } catch(e) {
+      return e.toString();
     }
 
   }

@@ -107,6 +107,16 @@ class _SignInPageState extends State<SignInPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 4.0, horizontal: 28.0),
                               child: TextFormField(
+                                validator: (v) {
+                                  if(v.isEmpty) {
+                                    return "Please enter an email";
+                                  } else if (!v.contains("@") || !v.contains(".com")) {
+                                    return "Bad email format";
+                                  }
+                                  else {
+                                    return null;
+                                  }
+                                },
                                 controller: emailController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 20.0),
@@ -131,6 +141,16 @@ class _SignInPageState extends State<SignInPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 4.0, horizontal: 28.0),
                               child: TextFormField(
+                                validator: (v) {
+                                  if(v.isEmpty) {
+                                    return "Please enter a password";
+                                  } else if (passwordController.text.length < 5) {
+                                    return "Password should not be less than 5 characters";
+                                  }
+                                  else {
+                                    return null;
+                                  }
+                                },
                                 controller: passwordController,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 20.0),
